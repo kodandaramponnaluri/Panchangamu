@@ -1543,12 +1543,10 @@ function computeAll(dateObj, lat, lon, tz){
     varjyam = { startJD: nakStartJD + (vg[0]/60)*nakDur, endJD: nakStartJD + (vg[1]/60)*nakDur };
   }
 
-  // Shaka samvatsara (valid approx for dates after Ugadi in a given greg year)
-  var shakaYear = y - 78;
-  // If before ~ mid-March (approx Ugadi), previous shaka year still running
-  if(m<3 || (m===3 && day<15)) shakaYear -= 1;
-  var svIdx = ((shakaYear%60)+12)%60; if(svIdx===0) svIdx=60;
-  var samvatsara = SAMVATSARA[svIdx-1];
+  // Shaka samvatsara: turns over at Ugadi (see samvatsaraForDate)
+  var svInfo = samvatsaraForDate(y, m, day, tzOffsetH);
+  var shakaYear = svInfo.shaka;
+  var samvatsara = svInfo.name;
 
   // moon illumination fraction (0=new,1=full) based on elongation
   var illum = (1-Math.cos(toRad(elong)))/2;
@@ -2001,14 +1999,21 @@ function tithiSegmentsForWindow(y, m, day, lat, lon, tz, moment){
 
   var segs=[], curJD=JD0;
   for(var guard=0; guard<4; guard++){
-    var T=(curJD-2451545.0)/36525;
+    // Later segments start exactly on a tithi boundary (for Pratipada, the new moon itself), where
+    // rounding can still return the outgoing tithi and masa; sample a little inside the segment.
+    var sampleJD = guard===0 ? curJD : curJD+0.01;
+    var T=(sampleJD-2451545.0)/36525;
     var elong=norm360(moonLongitude(T)-sunLongitude(T));
     var tithiNum=Math.floor(elong/12)+1;
     var paksha=tithiNum<=15?'Shukla':'Krishna';
-    var masaInfo=getMasaForJD(curJD);
-    segs.push({tithiNum:tithiNum, paksha:paksha, masaIdx:masaInfo.idx, masaIsAdhika:masaInfo.isAdhika});
+    var masaInfo=getMasaForJD(sampleJD);
     var segEndTarget=(tithiNum*12)%360;
-    var segEndJD=findCrossing(elongAtJD, segEndTarget, curJD, 2);
+    var segEndJD=findCrossing(elongAtJD, segEndTarget, sampleJD, 2);
+    // A tithi still running at the NEXT day's reference moment belongs to that day, not this one.
+    // Only the tithi prevailing at this day's moment, plus any kshaya tithi that begins and ends
+    // inside the window, count for this day.
+    if(guard>0 && (!segEndJD || segEndJD>=JD1)) break;
+    segs.push({tithiNum:tithiNum, paksha:paksha, masaIdx:masaInfo.idx, masaIsAdhika:masaInfo.isAdhika});
     if(!segEndJD || segEndJD>=JD1) break;
     curJD=segEndJD;
   }
@@ -2456,7 +2461,7 @@ function computeSravanamData(guessYear, lat, lon, tz){
   if(!ugadiJD) return null;
   var ugadiDate = new Date((ugadiJD-2440587.5)*86400000);
   var uy=ugadiDate.getUTCFullYear(), um=ugadiDate.getUTCMonth()+1, ud=ugadiDate.getUTCDate();
-  var sv = samvatsaraForDate(uy, um, ud);
+  var sv = samvatsaraForDate(uy, um, ud, getTZOffsetMinutes(new Date(uy,um-1,ud), tz)/60);
   var kingWd = new Date(uy, um-1, ud).getDay();
 
   var roles = {};
@@ -3032,9 +3037,18 @@ var MASA_SHORT_SA=MASA_SHORT_HI;
 function ayanamForSunSid(sunSidDeg){
   return (sunSidDeg>=270 || sunSidDeg<90) ? 'Uttarayana' : 'Dakshinayana';
 }
-function samvatsaraForDate(y,m,day){
+function samvatsaraForDate(y,m,day,tzOffsetH){
   var shakaYear = y-78;
-  if(m<3 || (m===3 && day<15)) shakaYear -= 1;
+  // The year turns over at Ugadi (Chaitra Shukla Padyami), which can fall anywhere from mid-March
+  // to mid-April. Use the lunar month at local noon (Madhyahna rule, as in the Festivals engine):
+  // Ugadi has passed once noon falls in Nija Chaitra or later; Pushya/Magha/Phalguna or an Adhika
+  // Chaitra mean the previous samvatsara is still running.
+  if(m<=4){
+    var tzH = (typeof tzOffsetH==='number') ? tzOffsetH : 5.5;
+    var noonMasa = getMasaForJD(julianDay(y,m,day,12-tzH));
+    var afterUgadi = noonMasa.idx<=2 && !(noonMasa.idx===0 && noonMasa.isAdhika);
+    if(!afterUgadi) shakaYear -= 1;
+  }
   var svIdx=((shakaYear%60)+12)%60; if(svIdx===0) svIdx=60;
   return { name:SAMVATSARA[svIdx-1], nameTe:SAMVATSARA_TE[svIdx-1], nameHi:SAMVATSARA_HI[svIdx-1], nameSa:SAMVATSARA_SA[svIdx-1], shaka:shakaYear };
 }
@@ -3076,7 +3090,7 @@ function renderCalendarTab(){
   var firstWeekday=new Date(y,m,1).getDay();
 
   // Samvatsara + Ayanam context for this month (compute at start and end; show a transition note if either changes)
-  var svStart=samvatsaraForDate(y,m+1,1), svEnd=samvatsaraForDate(y,m+1,daysInMonth);
+  var svStart=samvatsaraForDate(y,m+1,1,getTZOffsetMinutes(new Date(y,m,1),state.tz)/60), svEnd=samvatsaraForDate(y,m+1,daysInMonth,getTZOffsetMinutes(new Date(y,m,daysInMonth),state.tz)/60);
   var jdStart=julianDay(y,m+1,1,6.5), jdEnd=julianDay(y,m+1,daysInMonth,6.5);
   var ayaStart=ayanamForSunSid(sunSidAtJD(jdStart)), ayaEnd=ayanamForSunSid(sunSidAtJD(jdEnd));
   var AYANAM_ALL_CAL={'Uttarayana':{te:'ఉత్తరాయణం',hi:'उत्तरायण',sa:'उत्तरायणम्'},'Dakshinayana':{te:'దక్షిణాయణం',hi:'दक्षिणायन',sa:'दक्षिणायनम्'}};
@@ -3224,7 +3238,7 @@ function renderCalendarTab(){
       cell.title = (cell.title?cell.title+' — ':'') + pick(L,'Begins','ప్రారంభం','आरम्भ','आरम्भः')+': '+ayaName;
     }
     if(isYearStart){
-      var svThis=samvatsaraForDate(y,m+1,day);
+      var svThis=samvatsaraForDate(y,m+1,day,tzOffsetH);
       var svLabel = pick(L,
         'Ugadi — '+svThis.name+' Nama Samvatsara begins',
         'ఉగాది — '+svThis.nameTe+' నామ సంవత్సరం ప్రారంభం',
