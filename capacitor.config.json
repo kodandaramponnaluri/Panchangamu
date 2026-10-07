@@ -1,0 +1,8 @@
+{
+  "appId": "com.drikpanchangam.app",
+  "appName": "Drik Panchangam",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
