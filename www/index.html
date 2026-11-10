@@ -125,6 +125,24 @@
   .period .pname .te-sub{ display:block; font-size:12px; font-weight:400; color:var(--ivory-dim); }
   .period .ptime{ font-family:'JetBrains Mono'; font-size:13.5px; color:var(--caution); font-weight:600; }
   .pending{ font-size:12px; color:var(--ivory-dim); font-style:italic; padding:10px 4px; }
+  details.kalam{ background:var(--bg-surface); border:1px solid var(--line); border-left:4px solid var(--caution); border-radius:14px; padding:12px 14px; margin-bottom:8px; }
+  details.kalam.favor{ border-left-color:var(--good); }
+  details.kalam summary{ cursor:pointer; list-style:none; }
+  details.kalam summary::-webkit-details-marker{ display:none; }
+  details.kalam .khead{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  details.kalam .kname{ font-size:15px; font-weight:600; }
+  details.kalam .kname::after{ content:' ›'; color:var(--ivory-dim); }
+  details.kalam[open] .kname::after{ content:' ⌄'; }
+  details.kalam .ktime{ font-family:'JetBrains Mono'; font-size:12.5px; font-weight:600; color:var(--caution); }
+  details.kalam.favor .ktime{ color:var(--good); }
+  details.kalam .ktime.muted{ font-family:'Inter'; font-weight:400; font-style:italic; color:var(--ivory-dim); }
+  details.kalam .knote{ font-size:11.5px; color:var(--caution); margin-top:3px; }
+  details.kalam .kgist{ font-size:12.5px; color:var(--ivory-dim); margin-top:4px; line-height:1.45; }
+  details.kalam .kbody{ margin-top:10px; border-top:1px solid var(--line); padding-top:6px; }
+  details.kalam .klabel{ font-size:10.5px; text-transform:uppercase; letter-spacing:0.09em; color:var(--gold-soft); margin-top:10px; }
+  details.kalam .ktext{ font-size:13.5px; line-height:1.6; margin-top:3px; }
+  #kalamsMyths{ margin:0; padding-left:18px; font-size:13px; line-height:1.6; }
+  #kalamsMyths li{ margin-bottom:6px; }
 
   footer{ text-align:center; padding:20px 18px 0; font-size:11px; color:var(--ivory-dim); line-height:1.6; }
 
@@ -213,6 +231,7 @@
     <button class="tabbtn" id="tabBtnMatch" data-en="Kundali Match" data-te="జాతక పొంతన" data-hi="कुंडली मिलान" data-sa="जातकमेलनम्">Kundali Match</button>
     <button class="tabbtn" id="tabBtnMuhurtham" data-en="Muhurtham Finder" data-te="ముహూర్తం అన్వేషణ" data-hi="मुहूर्त खोजक" data-sa="मुहूर्तान्वेषणम्">Muhurtham Finder</button>
     <button class="tabbtn" id="tabBtnSravanam" data-en="Panchanga Sravanam" data-te="పంచాంగ శ్రవణం" data-hi="पंचांग श्रवणम्" data-sa="पञ्चाङ्गश्रवणम्">Panchanga Sravanam</button>
+    <button class="tabbtn" id="tabBtnKalams" data-en="Kalams Explained" data-te="కాలాల వివరణ" data-hi="काल परिचय" data-sa="कालविवरणम्">Kalams Explained</button>
   </div>
 
   <div id="tabPanchangamu">
@@ -613,6 +632,27 @@
         <div class="pname" style="margin-bottom:6px;" data-en="⚠️ Informational only — please consult your purohit" data-te="⚠️ సమాచార ప్రయోజనం కోసం మాత్రమే — దయచేసి మీ పురోహితుడిని సంప్రదించండి" data-hi="⚠️ केवल जानकारी हेतु — कृपया अपने पुरोहित से परामर्श करें" data-sa="⚠️ केवलं सूचनार्थम् — कृपया स्वपुरोहितं सम्पर्कयतु">⚠️ Informational only — please consult your purohit</div>
         <div style="font-size:12px;color:var(--ivory-dim);line-height:1.5;" data-en="This Panchanga Sravanam is computed from general Vedic mundane-astrology principles (Navanayaka assignments and standard planetary/rashi significations) — the same structure a purohit's reading follows, but without the depth, regional tradition, and personal chart context a real Sravanam includes. Treat it as a helpful overview, and speak with your family purohit for the full, personalized reading." data-te="ఈ పంచాంగ శ్రవణం సాధారణ వేద మండన జ్యోతిష సూత్రాల నుండి (నవనాయక కేటాయింపులు మరియు ప్రామాణిక గ్రహ/రాశి లక్షణాలు) లెక్కించబడింది — ఇది పురోహితుడి పఠనం అనుసరించే అదే నిర్మాణం, కానీ నిజమైన శ్రవణంలో ఉండే లోతు, ప్రాంతీయ సంప్రదాయం మరియు వ్యక్తిగత జాతక సందర్భం లేకుండా. దీన్ని సహాయకరమైన సమీక్షగా భావించి, పూర్తి, వ్యక్తిగతీకరించిన పఠనం కోసం మీ కుటుంబ పురోహితుడితో మాట్లాడండి." data-hi="यह पंचांग श्रवणम् सामान्य वैदिक मुण्डन ज्योतिष सिद्धांतों (नवनायक निर्धारण और मानक ग्रह/राशि संकेत) से गणना की गई है — यह वही संरचना है जो पुरोहित का पठन अनुसरण करता है, पर वास्तविक श्रवणम् में शामिल गहराई, क्षेत्रीय परंपरा, और व्यक्तिगत कुंडली संदर्भ के बिना। इसे एक सहायक अवलोकन मानें, और पूर्ण, व्यक्तिगत पठन के लिए अपने पारिवारिक पुरोहित से बात करें।" data-sa="इदं पञ्चाङ्गश्रवणं सामान्यवैदिकमुण्डनज्योतिषसिद्धान्तेभ्यः (नवनायकनिर्धारणं प्रामाणिकग्रहराशिलक्षणानि च) गणितम् — पुरोहितस्य पठनं यां रचनाम् अनुसरति ताम् एव, परन्तु वास्तविकश्रवणे अन्तर्भूतां गहनतां प्रादेशिकसम्प्रदायं व्यक्तिगतजातकसन्दर्भं च विना। एतत् सहायकावलोकनं मन्यताम्, सम्पूर्णव्यक्तिगतपठनार्थं स्वकुटुम्बपुरोहितेन सह वदतु।">This Panchanga Sravanam is computed from general Vedic mundane-astrology principles (Navanayaka assignments and standard planetary/rashi significations) — the same structure a purohit's reading follows, but without the depth, regional tradition, and personal chart context a real Sravanam includes. Treat it as a helpful overview, and speak with your family purohit for the full, personalized reading.</div>
       </div>
+    </div>
+  </div>
+
+  <div id="tabKalams" style="display:none;">
+    <div class="card" style="margin-bottom:6px;">
+      <div class="label" id="kalamsWhen">—</div>
+      <div id="kalamsIntro" style="font-size:13.5px;line-height:1.6;">—</div>
+    </div>
+
+    <div class="section-title" data-en="Periods tradition avoids for new beginnings" data-te="కొత్త ప్రారంభాలకు సంప్రదాయం తప్పించే కాలాలు" data-hi="नए आरम्भ के लिए परंपरा द्वारा वर्जित काल" data-sa="नूतनारम्भाय परम्परया वर्ज्याः कालाः">Periods tradition avoids for new beginnings</div>
+    <div id="kalamsAvoidWrap"></div>
+
+    <div class="section-title" data-en="Periods tradition favors" data-te="సంప్రదాయం అనుకూలంగా భావించే కాలాలు" data-hi="परंपरा द्वारा अनुकूल माने गए काल" data-sa="परम्परया अनुकूलाः कालाः">Periods tradition favors</div>
+    <div id="kalamsFavorWrap"></div>
+
+    <div class="section-title" data-en="Common misunderstandings" data-te="సాధారణ అపోహలు" data-hi="आम भ्रांतियाँ" data-sa="सामान्यभ्रान्तयः">Common misunderstandings</div>
+    <div class="card"><ul id="kalamsMyths"></ul></div>
+
+    <div class="period" style="display:block;margin-top:14px;">
+      <div class="pname" style="margin-bottom:6px;" data-en="⚠️ Information, not advice" data-te="⚠️ ఇది సమాచారం మాత్రమే, సలహా కాదు" data-hi="⚠️ यह जानकारी है, सलाह नहीं" data-sa="⚠️ इदं विवरणमात्रम्, न उपदेशः">⚠️ Information, not advice</div>
+      <div style="font-size:12px;color:var(--ivory-dim);line-height:1.5;" data-en="This page describes what tradition holds and how it is practiced, without asking you to follow or ignore it. Customs differ between regions, sampradayas and families; for an important event, please confirm with your family purohit." data-te="ఈ పేజీ సంప్రదాయం ఏమి చెబుతుందో, ఎలా ఆచరిస్తారో వివరిస్తుంది; దాన్ని పాటించమని గానీ పట్టించుకోవద్దని గానీ చెప్పదు. ప్రాంతాలు, సంప్రదాయాలు, కుటుంబాలను బట్టి ఆచారాలు మారుతాయి; ముఖ్యమైన కార్యానికి దయచేసి మీ కుటుంబ పురోహితునితో నిర్ధారించుకోండి." data-hi="यह पृष्ठ बताता है कि परंपरा क्या कहती है और उसका पालन कैसे होता है, बिना आपसे उसे मानने या न मानने को कहे। क्षेत्रों, सम्प्रदायों और परिवारों में रीतियाँ भिन्न होती हैं; किसी महत्वपूर्ण आयोजन के लिए कृपया अपने कुल-पुरोहित से पुष्टि करें।" data-sa="इदं पृष्ठं परम्परा किं वदति कथं च आचर्यते इति वर्णयति, न तु अनुसरणाय उपेक्षायै वा प्रेरयति। प्रदेशेषु सम्प्रदायेषु कुटुम्बेषु च आचाराः भिद्यन्ते; महत्त्वपूर्णकार्याय कृपया कुलपुरोहितेन सह निश्चिनोतु।">This page describes what tradition holds and how it is practiced, without asking you to follow or ignore it. Customs differ between regions, sampradayas and families; for an important event, please confirm with your family purohit.</div>
     </div>
   </div>
 
@@ -1731,6 +1771,7 @@ function computeAll(dateObj, lat, lon, tz){
     wd:wd, vedicWd:vedicWd, samvatsara:samvatsara, shakaYear:shakaYear, masaInfo:masaInfo, ayanam:ayanam,
     sunrise: ss.polar? null : fmtTime(ss.sunriseMin),
     sunset: ss.polar? null : fmtTime(ss.sunsetMin),
+    sunriseMin: ss.polar? null : ss.sunriseMin, sunsetMin: ss.polar? null : ss.sunsetMin,
     polar: ss.polar,
     rahu:rahu, yama:yama, gulika:gulika,
     varjyam:varjyamOut, durmuhurtams:durmuhurtamsOut,
@@ -1815,6 +1856,7 @@ function applyLang(){
   }
   if(typeof renderEvents==='function' && typeof events!=='undefined'){ renderEvents(); }
   if(typeof renderCalendarTab==='function' && document.getElementById('tabCalendar').style.display!=='none'){ renderCalendarTab(); }
+  if(typeof renderKalamsTab==='function' && document.getElementById('tabKalams').style.display!=='none'){ renderKalamsTab(); }
 }
 
 function render(){
@@ -2090,6 +2132,328 @@ function renderCityList(filter){
 document.getElementById('citySearch').oninput=function(e){ renderCityList(e.target.value); };
 document.getElementById('cityBack').onclick=function(){ pickedCountry=null; renderCityList(''); };
 
+/* ================= KALAMS EXPLAINED TAB ================= */
+// Plain-language explanations of the daily periods. Wording describes what tradition holds,
+// without endorsing or dismissing it. Times come from computeAll() (same values as the
+// Panchangamu tab); Abhijit is midday ± 1/30 of day length. Brahma muhurtam and Amrita kalam
+// are explained only, not timed (see their "how" text).
+var KALAM_LABELS={
+  what:['What it is','ఇది ఏమిటి','यह क्या है','किम् एतत्'],
+  how:['How it is calculated','ఎలా లెక్కిస్తారు','गणना कैसे होती है','कथं गण्यते'],
+  avoid:['What tradition advises against','సంప్రదాయం వద్దని చెప్పేవి','परंपरा किससे बचने को कहती है','परम्परया किं वर्ज्यते'],
+  favor:['What tradition favors','సంప్రదాయం అనుకూలంగా చెప్పేవి','परंपरा किसे अनुकूल मानती है','परम्परया किम् अनुकूलम्'],
+  varies:['How practice varies','ఆచరణలో తేడాలు','व्यवहार में अंतर','आचारभेदाः'],
+  notTimed:['Time not calculated in this app','ఈ యాప్‌లో సమయం లెక్కించబడదు','इस ऐप में समय की गणना नहीं होती','अस्मिन् अनुप्रयोगे समयः न गण्यते'],
+  none:['None on this date','ఈ తేదీన లేదు','इस तिथि को नहीं','अस्मिन् दिने नास्ति'],
+  polar:['No sunrise/sunset here on this date','ఈ తేదీన ఇక్కడ సూర్యోదయం/సూర్యాస్తమయం లేదు','इस तिथि को यहाँ सूर्योदय/सूर्यास्त नहीं','अस्मिन् दिने अत्र सूर्योदयास्तौ न स्तः'],
+  abhijitWed:['Wednesday: many traditions skip Abhijit today','బుధవారం: చాలా సంప్రదాయాలు ఈ రోజు అభిజిత్‌ను వాడవు','बुधवार: कई परंपराएँ आज अभिजित् नहीं लेतीं','बुधवासरः: बहवः सम्प्रदायाः अद्य अभिजितं न गृह्णन्ति']
+};
+
+var KALAM_INFO=[
+ { key:'rahu', group:'avoid',
+   name:['Rahu Kalam','రాహుకాలం','राहु काल','राहुकालः'],
+   gist:['About 1½ hours each day; tradition avoids starting new auspicious work in it.',
+         'ప్రతిరోజు సుమారు 1½ గంటలు; ఈ సమయంలో కొత్త శుభకార్యాలు ప్రారంభించకూడదని సంప్రదాయం.',
+         'प्रतिदिन लगभग 1½ घंटे; परंपरा इसमें नए शुभ कार्य आरम्भ न करने को कहती है।',
+         'प्रतिदिनं प्रायः सार्धघण्टा; अस्मिन् नूतनशुभकार्यारम्भः परम्परया वर्ज्यते।'],
+   what:['One of the eight equal parts of the daytime, associated with Rahu, the shadow planet (the Moon\'s ascending node). It lasts about 1½ hours when the day is 12 hours long.',
+         'పగటి సమయాన్ని ఎనిమిది సమాన భాగాలుగా విభజిస్తే అందులో ఒక భాగం. ఇది ఛాయా గ్రహమైన రాహువుకు (చంద్రుని ఉత్తర పాతం) సంబంధించినది. పగలు 12 గంటలు ఉన్నప్పుడు సుమారు 1½ గంటలు ఉంటుంది.',
+         'दिन के आठ समान भागों में से एक, जो छाया ग्रह राहु (चन्द्रमा का आरोही पात) से जुड़ा है। दिन 12 घंटे का हो तो यह लगभग 1½ घंटे का होता है।',
+         'दिवसस्य अष्टसु समभागेषु एकः, छायाग्रहेण राहुणा (चन्द्रस्य आरोहपातेन) सम्बद्धः। द्वादशघण्टात्मके दिवसे प्रायः सार्धघण्टा।'],
+   how:['Daytime (sunrise to sunset at your location) is divided into 8 equal parts. Rahu Kalam is part 8 on Sunday, 2 on Monday, 7 on Tuesday, 5 on Wednesday, 6 on Thursday, 4 on Friday and 3 on Saturday. With a 6 AM sunrise this gives the familiar printed times, such as Monday 7:30–9:00 AM; with your real sunrise and sunset the times shift.',
+        'మీ ప్రాంతంలో సూర్యోదయం నుండి సూర్యాస్తమయం వరకు ఉన్న పగటిని 8 సమాన భాగాలు చేస్తారు. ఆదివారం 8వ భాగం, సోమవారం 2వ, మంగళవారం 7వ, బుధవారం 5వ, గురువారం 6వ, శుక్రవారం 4వ, శనివారం 3వ భాగం రాహుకాలం. ఉదయం 6 గంటల సూర్యోదయానికి ఇది అందరికీ తెలిసిన ముద్రిత సమయాలు ఇస్తుంది (ఉదా. సోమవారం ఉ. 7:30–9:00); అసలు సూర్యోదయ, సూర్యాస్తమయాలతో సమయాలు మారుతాయి.',
+        'आपके स्थान पर सूर्योदय से सूर्यास्त तक के दिन को 8 समान भागों में बाँटा जाता है। रविवार को 8वाँ, सोमवार को 2रा, मंगलवार को 7वाँ, बुधवार को 5वाँ, गुरुवार को 6ठा, शुक्रवार को 4था और शनिवार को 3रा भाग राहु काल है। सुबह 6 बजे के सूर्योदय पर यह छपे हुए परिचित समय देता है (जैसे सोमवार 7:30–9:00); वास्तविक सूर्योदय-सूर्यास्त से समय बदलते हैं।',
+        'भवतः स्थाने सूर्योदयात् सूर्यास्तपर्यन्तं दिवसः अष्टधा समं विभज्यते। भानुवासरे अष्टमः, सोमवासरे द्वितीयः, मङ्गलवासरे सप्तमः, बुधवासरे पञ्चमः, गुरुवासरे षष्ठः, शुक्रवासरे चतुर्थः, शनिवासरे तृतीयः भागः राहुकालः। प्रातः षड्वादने सूर्योदये प्रसिद्धाः मुद्रितसमयाः लभ्यन्ते (यथा सोमवासरे 7:30–9:00); वास्तविकसूर्योदयास्ताभ्यां समयाः परिवर्तन्ते।'],
+   avoid:['Beginning new auspicious undertakings: a marriage, griha pravesham, a new business, signing an important agreement, or setting out on an important journey.',
+          'కొత్త శుభకార్యాలు ప్రారంభించడం: వివాహం, గృహప్రవేశం, కొత్త వ్యాపారం, ముఖ్యమైన ఒప్పందంపై సంతకం, లేదా ముఖ్యమైన ప్రయాణానికి బయలుదేరడం.',
+          'नए शुभ कार्यों का आरम्भ: विवाह, गृहप्रवेश, नया व्यवसाय, किसी महत्वपूर्ण अनुबंध पर हस्ताक्षर, या किसी महत्वपूर्ण यात्रा पर निकलना।',
+          'नूतनशुभकार्याणाम् आरम्भः: विवाहः, गृहप्रवेशः, नूतनव्यापारः, महत्त्वपूर्णसन्धिपत्रे हस्ताक्षरम्, महत्त्वपूर्णयात्रायै प्रस्थानं वा।'],
+   favor:['Work already under way simply continues. Some temples, especially in South India, hold special prayers to Goddess Durga during Rahu Kalam, often on Tuesdays and Fridays, and prayers to pacify Rahu are considered fitting at this time.',
+          'ఇప్పటికే జరుగుతున్న పనులు యథావిధిగా కొనసాగుతాయి. కొన్ని ఆలయాలలో, ముఖ్యంగా దక్షిణ భారతదేశంలో, రాహుకాలంలో దుర్గాదేవికి ప్రత్యేక పూజలు చేస్తారు (తరచుగా మంగళ, శుక్రవారాలలో); రాహు శాంతి ప్రార్థనలకు ఈ సమయం తగినదిగా భావిస్తారు.',
+          'पहले से चल रहे कार्य सामान्य रूप से चलते रहते हैं। कुछ मंदिरों में, विशेषकर दक्षिण भारत में, राहु काल में देवी दुर्गा की विशेष पूजा होती है (अक्सर मंगलवार और शुक्रवार को), और राहु-शांति की प्रार्थना इस समय उचित मानी जाती है।',
+          'आरब्धानि कार्याणि यथावत् प्रचलन्ति। केषुचित् देवालयेषु, विशेषतः दक्षिणभारते, राहुकाले दुर्गादेव्याः विशेषपूजा भवति (प्रायः मङ्गलशुक्रवासरयोः); राहुशान्तिप्रार्थनायै अयं कालः उचितः इति मन्यते।'],
+   varies:['Rahu Kalam is observed most widely in South India; many North Indian families give it less weight and use Choghadiya instead. Some people avoid it for any new task, others only for major events.',
+           'రాహుకాలాన్ని దక్షిణ భారతదేశంలో ఎక్కువగా పాటిస్తారు; ఉత్తర భారతదేశంలో చాలా కుటుంబాలు దీనికి తక్కువ ప్రాధాన్యం ఇచ్చి చౌఘడియాను వాడతాయి. కొందరు ఏ కొత్త పనికైనా దీన్ని తప్పిస్తారు, మరికొందరు పెద్ద కార్యాలకు మాత్రమే.',
+           'राहु काल का पालन दक्षिण भारत में सबसे अधिक होता है; उत्तर भारत के कई परिवार इसे कम महत्व देते हैं और चौघड़िया का उपयोग करते हैं। कुछ लोग हर नए काम के लिए इससे बचते हैं, कुछ केवल बड़े आयोजनों के लिए।',
+           'राहुकालः दक्षिणभारते अधिकं पाल्यते; उत्तरभारते बहूनि कुटुम्बानि अस्मै अल्पं महत्त्वं ददति चौघडियां च उपयुञ्जते। केचन सर्वस्मै नूतनकार्याय एनं वर्जयन्ति, अन्ये केवलं महाकार्येभ्यः।'] },
+
+ { key:'yama', group:'avoid',
+   name:['Yamagandam','యమగండం','यमगण्ड','यमगण्डः'],
+   gist:['Another 1½-hour daytime part, treated much like Rahu Kalam.',
+         'పగటిలో మరో 1½ గంటల భాగం; దాదాపు రాహుకాలం లాగానే పరిగణిస్తారు.',
+         'दिन का एक और 1½ घंटे का भाग, जिसे लगभग राहु काल की तरह माना जाता है।',
+         'दिवसस्य अपरः सार्धघण्टात्मकः भागः, प्रायः राहुकालवत् गण्यते।'],
+   what:['Another of the eight daytime parts, associated with Yama, the deity of death and dharma. Like Rahu Kalam it lasts about 1½ hours on a 12-hour day.',
+         'పగటిలోని ఎనిమిది భాగాలలో మరొకటి. ఇది మృత్యువు, ధర్మాలకు అధిపతి అయిన యమునికి సంబంధించినది. రాహుకాలం లాగానే 12 గంటల పగటిలో సుమారు 1½ గంటలు.',
+         'दिन के आठ भागों में से एक और, जो मृत्यु और धर्म के देवता यम से जुड़ा है। राहु काल की तरह 12 घंटे के दिन में लगभग 1½ घंटे।',
+         'दिवसस्य अष्टभागेषु अन्यः, मृत्युधर्मयोः देवतया यमेन सम्बद्धः। राहुकालवत् द्वादशघण्टात्मके दिवसे प्रायः सार्धघण्टा।'],
+   how:['The same 8-part division of daytime. Yamagandam is part 5 on Sunday, 4 on Monday, 3 on Tuesday, 2 on Wednesday, 1 on Thursday, 7 on Friday and 6 on Saturday.',
+        'అదే 8 భాగాల విభజన. ఆదివారం 5వ భాగం, సోమవారం 4వ, మంగళవారం 3వ, బుధవారం 2వ, గురువారం 1వ, శుక్రవారం 7వ, శనివారం 6వ భాగం యమగండం.',
+        'दिन का वही 8 भागों का विभाजन। रविवार को 5वाँ, सोमवार को 4था, मंगलवार को 3रा, बुधवार को 2रा, गुरुवार को 1ला, शुक्रवार को 7वाँ और शनिवार को 6ठा भाग यमगण्ड है।',
+        'स एव दिवसस्य अष्टधा विभागः। भानुवासरे पञ्चमः, सोमवासरे चतुर्थः, मङ्गलवासरे तृतीयः, बुधवासरे द्वितीयः, गुरुवासरे प्रथमः, शुक्रवासरे सप्तमः, शनिवासरे षष्ठः भागः यमगण्डः।'],
+   avoid:['Treated like Rahu Kalam: beginning auspicious ceremonies, new ventures and important journeys.',
+          'రాహుకాలం లాగానే: శుభ కార్యక్రమాలు, కొత్త వ్యాపారాలు, ముఖ్యమైన ప్రయాణాలు ప్రారంభించడం.',
+          'राहु काल की तरह: शुभ संस्कार, नए उद्यम और महत्वपूर्ण यात्राएँ आरम्भ करना।',
+          'राहुकालवत्: शुभसंस्काराणां, नूतनोद्यमानां, महत्त्वपूर्णयात्राणां च आरम्भः।'],
+   favor:['Nothing in particular is prescribed for it. Routine work and work already under way continue.',
+          'దీనికి ప్రత్యేకంగా ఏమీ సూచించలేదు. రోజువారీ పనులు, ఇప్పటికే మొదలైన పనులు కొనసాగుతాయి.',
+          'इसके लिए कुछ विशेष निर्धारित नहीं है। दैनिक कार्य और पहले से चल रहे कार्य चलते रहते हैं।',
+          'अस्मै विशेषं किमपि न विहितम्। नित्यकार्याणि आरब्धकार्याणि च प्रचलन्ति।'],
+   varies:['Many South Indian households give it nearly the same weight as Rahu Kalam; elsewhere it is often not consulted at all.',
+           'దక్షిణ భారతదేశంలో చాలా కుటుంబాలు దీనికి దాదాపు రాహుకాలంతో సమానమైన ప్రాధాన్యం ఇస్తాయి; ఇతర ప్రాంతాలలో తరచుగా దీన్ని చూడరు.',
+           'दक्षिण भारत के कई परिवार इसे लगभग राहु काल जितना ही महत्व देते हैं; अन्य स्थानों पर अक्सर इसे देखा ही नहीं जाता।',
+           'दक्षिणभारते बहूनि कुटुम्बानि अस्मै प्रायः राहुकालसमं महत्त्वं ददति; अन्यत्र प्रायः न विचार्यते।'] },
+
+ { key:'gulika', group:'avoid',
+   name:['Gulika Kalam','గుళికకాలం','गुलिक काल','गुलिककालः'],
+   gist:['A 1½-hour daytime part; tradition says what begins in it tends to repeat.',
+         'పగటిలో 1½ గంటల భాగం; ఇందులో మొదలైనది మళ్ళీ మళ్ళీ జరుగుతుందని సంప్రదాయ నమ్మకం.',
+         'दिन का 1½ घंटे का भाग; परंपरा कहती है कि इसमें आरम्भ हुआ कार्य दोहराया जाता है।',
+         'दिवसस्य सार्धघण्टात्मकः भागः; अस्मिन् आरब्धं पुनः पुनः भवति इति परम्परा।'],
+   what:['A daytime part ruled by Gulika (also called Mandi), a sub-planet associated with Saturn. It also lasts about 1½ hours on a 12-hour day.',
+         'శని గ్రహానికి సంబంధించిన ఉపగ్రహం గుళిక (మాంది అని కూడా అంటారు) అధిపతిగా ఉన్న పగటి భాగం. ఇది కూడా 12 గంటల పగటిలో సుమారు 1½ గంటలు.',
+         'दिन का वह भाग जिसका स्वामी गुलिक (मान्दि भी कहते हैं) है, जो शनि से जुड़ा एक उपग्रह है। यह भी 12 घंटे के दिन में लगभग 1½ घंटे का होता है।',
+         'शनिसम्बद्धः उपग्रहः गुलिकः (मान्दिः इत्यपि) यस्य अधिपतिः सः दिवसभागः। अयमपि द्वादशघण्टात्मके दिवसे प्रायः सार्धघण्टा।'],
+   how:['The same 8-part division of daytime. Gulika Kalam is part 7 on Sunday, 6 on Monday, 5 on Tuesday, 4 on Wednesday, 3 on Thursday, 2 on Friday and 1 on Saturday. The app also uses the start of Gulika Kalam to place Mandi in the Jathakamu chart.',
+        'అదే 8 భాగాల విభజన. ఆదివారం 7వ భాగం, సోమవారం 6వ, మంగళవారం 5వ, బుధవారం 4వ, గురువారం 3వ, శుక్రవారం 2వ, శనివారం 1వ భాగం గుళికకాలం. జాతకము చక్రంలో మాందిని ఉంచడానికి ఈ యాప్ గుళికకాలం ప్రారంభ సమయాన్నే వాడుతుంది.',
+        'दिन का वही 8 भागों का विभाजन। रविवार को 7वाँ, सोमवार को 6ठा, मंगलवार को 5वाँ, बुधवार को 4था, गुरुवार को 3रा, शुक्रवार को 2रा और शनिवार को 1ला भाग गुलिक काल है। जातकम् चक्र में मान्दि रखने के लिए यह ऐप गुलिक काल के आरम्भ का ही उपयोग करता है।',
+        'स एव दिवसस्य अष्टधा विभागः। भानुवासरे सप्तमः, सोमवासरे षष्ठः, मङ्गलवासरे पञ्चमः, बुधवासरे चतुर्थः, गुरुवासरे तृतीयः, शुक्रवासरे द्वितीयः, शनिवासरे प्रथमः भागः गुलिककालः। जातकचक्रे मान्दिस्थापनाय अयम् अनुप्रयोगः गुलिककालस्य आरम्भम् एव उपयुङ्क्ते।'],
+   avoid:['A common belief is that whatever begins in Gulika Kalam tends to repeat. So it is avoided for things one would not want repeated, such as funeral-related work, taking a loan, or a hospital admission that can be scheduled.',
+          'గుళికకాలంలో మొదలైనది మళ్ళీ మళ్ళీ జరుగుతుందని ఒక సాధారణ నమ్మకం. అందువల్ల మళ్ళీ జరగకూడదనుకునే పనులకు దీన్ని తప్పిస్తారు: అంత్యక్రియలకు సంబంధించిన పనులు, అప్పు తీసుకోవడం, లేదా ముందే నిర్ణయించుకోగల ఆసుపత్రి చేరిక వంటివి.',
+          'एक सामान्य मान्यता है कि गुलिक काल में आरम्भ हुआ कार्य दोहराया जाता है। इसलिए जिन कामों का दोहराव नहीं चाहिए उनके लिए इससे बचा जाता है, जैसे अंत्येष्टि से जुड़े कार्य, ऋण लेना, या पहले से तय की जा सकने वाली अस्पताल में भर्ती।',
+          'गुलिककाले आरब्धं पुनः पुनः भवति इति सामान्यः विश्वासः। अतः यत् पुनः न इष्यते तस्मै एषः वर्ज्यते, यथा अन्त्येष्टिसम्बद्धकार्याणि, ऋणग्रहणम्, पूर्वनिश्चेयः चिकित्सालयप्रवेशः वा।'],
+   favor:['For the same reason some consider it acceptable, even good, for things one would like to repeat, such as buying property or gold, starting savings, or repaying a debt.',
+          'అదే కారణంతో కొందరు మళ్ళీ మళ్ళీ జరగాలనుకునే పనులకు దీన్ని తగినదిగా, మంచిదిగా కూడా భావిస్తారు: ఆస్తి లేదా బంగారం కొనడం, పొదుపు ప్రారంభించడం, అప్పు తీర్చడం వంటివి.',
+          'इसी कारण कुछ लोग इसे उन कामों के लिए ठीक, बल्कि अच्छा भी मानते हैं जिनका दोहराव चाहिए, जैसे संपत्ति या सोना खरीदना, बचत शुरू करना, या ऋण चुकाना।',
+          'तेनैव कारणेन केचन यत् पुनः इष्यते तस्मै एनम् उचितं शुभमपि मन्यन्ते, यथा सम्पत्तेः सुवर्णस्य वा क्रयः, सञ्चयारम्भः, ऋणप्रतिदानं वा।'],
+   varies:['Opinion is divided. Some panchangams list it with Rahu Kalam as a time to avoid for all new work; others treat it as neutral. Ask your family purohit which view your family follows.',
+           'అభిప్రాయాలు భిన్నంగా ఉన్నాయి. కొన్ని పంచాంగాలు దీన్ని రాహుకాలంతో పాటు అన్ని కొత్త పనులకు తప్పించవలసిన సమయంగా చూపుతాయి; మరికొన్ని తటస్థంగా చూస్తాయి. మీ కుటుంబం ఏ అభిప్రాయం పాటిస్తుందో మీ పురోహితుడిని అడగండి.',
+           'मत बँटे हुए हैं। कुछ पंचांग इसे राहु काल के साथ सभी नए कार्यों से बचने का समय बताते हैं; अन्य इसे तटस्थ मानते हैं। आपका परिवार कौन-सा मत मानता है, यह अपने कुल-पुरोहित से पूछें।',
+           'मतभेदः अस्ति। कानिचित् पञ्चाङ्गानि एनं राहुकालेन सह सर्वनूतनकार्येभ्यः वर्ज्यं वदन्ति; अन्यानि तटस्थं मन्यन्ते। भवतः कुटुम्बं किं मतम् अनुसरति इति कुलपुरोहितं पृच्छतु।'] },
+
+ { key:'durm', group:'avoid',
+   name:['Durmuhurtam','దుర్ముహూర్తం','दुर्मुहूर्त','दुर्मुहूर्तम्'],
+   gist:['One or two unfavorable muhurtams (about 48 minutes each) on each weekday.',
+         'ప్రతి వారంలో ఒకటి లేదా రెండు అననుకూల ముహూర్తాలు (ఒక్కొక్కటి సుమారు 48 నిమిషాలు).',
+         'प्रत्येक वार में एक या दो प्रतिकूल मुहूर्त (प्रत्येक लगभग 48 मिनट)।',
+         'प्रतिवासरम् एकं द्वे वा प्रतिकूलमुहूर्ते (प्रत्येकं प्रायः 48 निमेषाः)।'],
+   what:['Durmuhurtam means an unfavorable muhurtam. Traditionally the daytime is made of 15 muhurtams, each about 48 minutes on a 12-hour day, and on each weekday one or two of them are considered unfavorable.',
+         'దుర్ముహూర్తం అంటే అననుకూలమైన ముహూర్తం. సంప్రదాయంగా పగలు 15 ముహూర్తాలుగా ఉంటుంది; 12 గంటల పగటిలో ఒక్కొక్కటి సుమారు 48 నిమిషాలు. ప్రతి వారంలో వీటిలో ఒకటి లేదా రెండు అననుకూలమైనవిగా భావిస్తారు.',
+         'दुर्मुहूर्त का अर्थ है प्रतिकूल मुहूर्त। परंपरा में दिन 15 मुहूर्तों का होता है, 12 घंटे के दिन में प्रत्येक लगभग 48 मिनट का, और हर वार इनमें से एक या दो प्रतिकूल माने जाते हैं।',
+         'दुर्मुहूर्तं नाम प्रतिकूलः मुहूर्तः। परम्परया दिवसः पञ्चदशमुहूर्तात्मकः, द्वादशघण्टात्मके दिवसे प्रत्येकं प्रायः 48 निमेषाः; प्रतिवासरं तेषु एकः द्वौ वा प्रतिकूलौ मन्येते।'],
+   how:['Each weekday has fixed positions in the day for its Durmuhurtam. Printed tables give them as clock times for a 6 AM–6 PM day; this app takes a commonly used table and scales it to your real sunrise and sunset, so the times move with the season and place.',
+        'ప్రతి వారానికి దుర్ముహూర్తం పగటిలో నిర్ణీత స్థానాలలో వస్తుంది. ముద్రిత పట్టికలు వీటిని ఉ. 6 – సా. 6 పగటికి గడియార సమయాలుగా ఇస్తాయి; ఈ యాప్ సాధారణంగా వాడే పట్టికను తీసుకుని మీ అసలు సూర్యోదయ, సూర్యాస్తమయాలకు అనుగుణంగా మారుస్తుంది, కాబట్టి సమయాలు ఋతువు, ప్రదేశాన్ని బట్టి మారుతాయి.',
+        'हर वार का दुर्मुहूर्त दिन में निश्चित स्थानों पर आता है। छपी हुई तालिकाएँ इन्हें सुबह 6 – शाम 6 के दिन के लिए घड़ी के समय में देती हैं; यह ऐप एक प्रचलित तालिका लेकर उसे आपके वास्तविक सूर्योदय और सूर्यास्त के अनुसार ढालता है, इसलिए समय ऋतु और स्थान के साथ बदलते हैं।',
+        'प्रतिवासरं दुर्मुहूर्तः दिवसे निश्चितस्थानेषु पतति। मुद्रितसारण्यः तान् प्रातः षड्वादनात् सायं षड्वादनपर्यन्तं दिवसाय घटिकासमयरूपेण ददति; अयम् अनुप्रयोगः प्रचलितां सारणीं गृहीत्वा भवतः वास्तविकसूर्योदयास्तानुसारं परिवर्तयति, अतः समयाः ऋतुस्थानानुसारं परिवर्तन्ते।'],
+   avoid:['Starting auspicious ceremonies, especially marriage, griha pravesham, upanayanam and similar rites, and other important new beginnings.',
+          'శుభ కార్యక్రమాలు ప్రారంభించడం, ముఖ్యంగా వివాహం, గృహప్రవేశం, ఉపనయనం వంటి సంస్కారాలు, ఇతర ముఖ్యమైన కొత్త ప్రారంభాలు.',
+          'शुभ संस्कारों का आरम्भ, विशेषकर विवाह, गृहप्रवेश, उपनयन जैसे संस्कार, और अन्य महत्वपूर्ण नए आरम्भ।',
+          'शुभसंस्काराणाम् आरम्भः, विशेषतः विवाहगृहप्रवेशोपनयनादीनाम्, अन्येषां महत्त्वपूर्णनूतनारम्भाणां च।'],
+   favor:['Nothing specific is prescribed. Because it is short, most people simply begin a little before or after it.',
+          'ప్రత్యేకంగా ఏమీ సూచించలేదు. ఇది తక్కువ సమయం కాబట్టి చాలామంది కొంచెం ముందు గానీ తర్వాత గానీ ప్రారంభిస్తారు.',
+          'कुछ विशेष निर्धारित नहीं है। यह छोटा होता है, इसलिए अधिकतर लोग इससे थोड़ा पहले या बाद में आरम्भ कर लेते हैं।',
+          'विशेषं किमपि न विहितम्। अल्पकालः इति कारणात् बहवः ततः किञ्चित् पूर्वं पश्चात् वा आरभन्ते।'],
+   varies:['Published tables differ slightly in some weekday timings, and some panchangams also list a night-time Durmuhurtam on Tuesday. This app shows the daytime periods only.',
+           'కొన్ని వారాల సమయాలలో ముద్రిత పట్టికల మధ్య స్వల్ప తేడాలు ఉంటాయి; కొన్ని పంచాంగాలు మంగళవారం రాత్రి దుర్ముహూర్తం కూడా చూపుతాయి. ఈ యాప్ పగటి దుర్ముహూర్తాలను మాత్రమే చూపుతుంది.',
+           'कुछ वारों के समय में छपी तालिकाओं में थोड़ा अंतर होता है, और कुछ पंचांग मंगलवार को रात्रि का दुर्मुहूर्त भी बताते हैं। यह ऐप केवल दिन के दुर्मुहूर्त दिखाता है।',
+           'केषाञ्चित् वासराणां समयेषु मुद्रितसारणीषु अल्पभेदः अस्ति, कानिचित् पञ्चाङ्गानि मङ्गलवासरे रात्रिदुर्मुहूर्तमपि दर्शयन्ति। अयम् अनुप्रयोगः केवलं दिवसदुर्मुहूर्तान् दर्शयति।'] },
+
+ { key:'varj', group:'avoid',
+   name:['Varjyam','వర్జ్యం','वर्ज्य','वर्ज्यम्'],
+   gist:['A window of about 1½ hours inside each nakshatram; can fall at any hour, day or night.',
+         'ప్రతి నక్షత్రంలో సుమారు 1½ గంటల సమయం; పగలు లేదా రాత్రి ఏ సమయంలోనైనా రావచ్చు.',
+         'हर नक्षत्र के भीतर लगभग 1½ घंटे का समय; दिन या रात किसी भी समय पड़ सकता है।',
+         'प्रतिनक्षत्रं प्रायः सार्धघण्टात्मकः कालः; अहोरात्रे कदापि भवितुम् अर्हति।'],
+   what:['Varjyam means "to be avoided". It is a window of 4 ghatis (about 1½ hours, varying with the Moon\'s speed) inside each nakshatram, also called visha ghatikas.',
+         'వర్జ్యం అంటే "విడిచిపెట్టవలసినది". ప్రతి నక్షత్రంలో 4 ఘడియల (సుమారు 1½ గంటలు, చంద్రుని వేగాన్ని బట్టి మారుతుంది) సమయం. వీటిని విష ఘడియలు అని కూడా అంటారు.',
+         'वर्ज्य का अर्थ है "त्यागने योग्य"। यह हर नक्षत्र के भीतर 4 घटी (लगभग 1½ घंटे, चन्द्रमा की गति के अनुसार बदलता) का समय है, जिसे विष घटी भी कहते हैं।',
+         'वर्ज्यं नाम "त्याज्यम्"। प्रतिनक्षत्रं चतुर्घटिकात्मकः (प्रायः सार्धघण्टा, चन्द्रगत्यनुसारं परिवर्तमानः) कालः, विषघटिकाः इत्यपि उच्यते।'],
+   how:['The Moon takes roughly a day to cross each nakshatram. That span is divided into 60 ghatis, and a fixed 4-ghati window is marked for each nakshatram (for Ashwini, ghatis 50–54). The app finds the real start and end of the nakshatram and scales the window to its actual length, so Varjyam can fall at any hour, including at night, and on some dates there is none.',
+        'చంద్రుడు ఒక్కో నక్షత్రాన్ని దాటడానికి సుమారు ఒక రోజు పడుతుంది. ఆ కాలాన్ని 60 ఘడియలుగా విభజించి, ప్రతి నక్షత్రానికి ఒక నిర్ణీత 4 ఘడియల సమయాన్ని గుర్తిస్తారు (అశ్వినికి 50–54 ఘడియలు). ఈ యాప్ నక్షత్రం అసలు ప్రారంభ, ముగింపు సమయాలను కనుగొని, ఆ సమయాన్ని నక్షత్రం అసలు నిడివికి అనుగుణంగా మారుస్తుంది. అందువల్ల వర్జ్యం రాత్రితో సహా ఏ సమయంలోనైనా రావచ్చు, కొన్ని తేదీలలో ఉండకపోవచ్చు.',
+        'चन्द्रमा को एक नक्षत्र पार करने में लगभग एक दिन लगता है। उस अवधि को 60 घटियों में बाँटकर हर नक्षत्र के लिए 4 घटी का एक निश्चित समय चिह्नित किया जाता है (अश्विनी के लिए घटी 50–54)। यह ऐप नक्षत्र का वास्तविक आरम्भ और अंत खोजकर उस समय को नक्षत्र की वास्तविक अवधि के अनुसार ढालता है, इसलिए वर्ज्य रात सहित किसी भी समय पड़ सकता है, और कुछ तिथियों पर होता ही नहीं।',
+        'चन्द्रः एकं नक्षत्रं प्रायः एकेन दिनेन अतिक्रामति। सः कालः षष्टिघटिकासु विभज्यते, प्रतिनक्षत्रं निश्चितः चतुर्घटिकात्मकः कालः अङ्क्यते (अश्विन्याः 50–54 घटिकाः)। अयम् अनुप्रयोगः नक्षत्रस्य वास्तविकारम्भान्तौ अन्विष्य तं कालं नक्षत्रस्य वास्तविकदैर्घ्यानुसारं परिवर्तयति, अतः वर्ज्यं रात्रौ अपि भवितुम् अर्हति, केषुचित् दिनेषु न भवति च।'],
+   avoid:['Choosing Varjyam as the starting time for marriage, griha pravesham and other important new beginnings.',
+          'వివాహం, గృహప్రవేశం, ఇతర ముఖ్యమైన కొత్త ప్రారంభాలకు వర్జ్య సమయాన్ని ముహూర్తంగా ఎంచుకోవడం.',
+          'विवाह, गृहप्रवेश और अन्य महत्वपूर्ण नए आरम्भों के लिए वर्ज्य के समय को आरम्भ-काल चुनना।',
+          'विवाहगृहप्रवेशादीनां महत्त्वपूर्णनूतनारम्भाणां कृते वर्ज्यकालस्य आरम्भसमयत्वेन चयनम्।'],
+   favor:['Nothing specific is prescribed for it.',
+          'దీనికి ప్రత్యేకంగా ఏమీ సూచించలేదు.',
+          'इसके लिए कुछ विशेष निर्धारित नहीं है।',
+          'अस्मै विशेषं किमपि न विहितम्।'],
+   varies:['Telugu panchangams print Varjyam prominently alongside Rahu Kalam; many North Indian calendars do not show it. Published tables differ in a few ghati values, and some list no Varjyam for certain nakshatrams (the table used here has none for Rohini and Dhanishta).',
+           'తెలుగు పంచాంగాలు వర్జ్యాన్ని రాహుకాలంతో పాటు ప్రముఖంగా ముద్రిస్తాయి; చాలా ఉత్తర భారత క్యాలెండర్లలో ఇది ఉండదు. కొన్ని ఘడియల విలువలలో ముద్రిత పట్టికల మధ్య తేడాలు ఉన్నాయి; కొన్ని పట్టికలు కొన్ని నక్షత్రాలకు వర్జ్యం ఇవ్వవు (ఇక్కడ వాడిన పట్టికలో రోహిణి, ధనిష్ఠలకు వర్జ్యం లేదు).',
+           'तेलुगु पंचांग वर्ज्य को राहु काल के साथ प्रमुखता से छापते हैं; कई उत्तर भारतीय कैलेंडर इसे नहीं दिखाते। छपी तालिकाओं में कुछ घटी-मानों में अंतर है, और कुछ तालिकाएँ कुछ नक्षत्रों के लिए वर्ज्य नहीं देतीं (यहाँ प्रयुक्त तालिका में रोहिणी और धनिष्ठा के लिए वर्ज्य नहीं है)।',
+           'तेलुगुपञ्चाङ्गानि वर्ज्यं राहुकालेन सह प्रमुखतया मुद्रयन्ति; बहूनि उत्तरभारतीयपञ्चाङ्गानि एतत् न दर्शयन्ति। मुद्रितसारणीषु केषुचित् घटिकामानेषु भेदः अस्ति, काश्चन सारण्यः कतिपयनक्षत्रेभ्यः वर्ज्यं न ददति (अत्र प्रयुक्तसारण्यां रोहिणीधनिष्ठयोः वर्ज्यं नास्ति)।'] },
+
+ { key:'abhijit', group:'favor',
+   name:['Abhijit Muhurtam','అభిజిత్ ముహూర్తం','अभिजित् मुहूर्त','अभिजिन्मुहूर्तः'],
+   gist:['About 48 minutes around local midday; considered one of the strongest times of the day.',
+         'స్థానిక మధ్యాహ్నం చుట్టూ సుమారు 48 నిమిషాలు; రోజులోని బలమైన శుభ సమయాలలో ఒకటిగా భావిస్తారు.',
+         'स्थानीय मध्याह्न के आसपास लगभग 48 मिनट; दिन के सबसे शुभ समयों में से एक माना जाता है।',
+         'स्थानीयमध्याह्नं परितः प्रायः 48 निमेषाः; दिवसस्य बलवत्सु शुभकालेषु अन्यतमः इति मन्यते।'],
+   what:['The 8th of the 15 daytime muhurtams, centered on local midday, when the Sun is highest in the sky. It lasts about 48 minutes on a 12-hour day.',
+         'పగటిలోని 15 ముహూర్తాలలో 8వది. సూర్యుడు ఆకాశంలో అత్యంత ఎత్తులో ఉండే స్థానిక మధ్యాహ్నం దీనికి మధ్యబిందువు. 12 గంటల పగటిలో సుమారు 48 నిమిషాలు.',
+         'दिन के 15 मुहूर्तों में 8वाँ, जिसका केंद्र स्थानीय मध्याह्न है, जब सूर्य आकाश में सबसे ऊँचा होता है। 12 घंटे के दिन में लगभग 48 मिनट।',
+         'दिवसस्य पञ्चदशमुहूर्तेषु अष्टमः, यस्य मध्यं स्थानीयमध्याह्नः यदा सूर्यः आकाशे उच्चतमः। द्वादशघण्टात्मके दिवसे प्रायः 48 निमेषाः।'],
+   how:['Midday is halfway between sunrise and sunset. Abhijit runs from one-thirtieth of the day length before midday to one-thirtieth after (about 24 minutes either side). The time shown here is calculated that way from your sunrise and sunset.',
+        'సూర్యోదయ, సూర్యాస్తమయాల మధ్యబిందువే మధ్యాహ్నం. మధ్యాహ్నానికి ముందు పగటి నిడివిలో ముప్పయ్యో వంతు నుండి తర్వాత ముప్పయ్యో వంతు వరకు (రెండు వైపులా సుమారు 24 నిమిషాలు) అభిజిత్. ఇక్కడ చూపిన సమయం మీ సూర్యోదయ, సూర్యాస్తమయాల నుండి ఇలాగే లెక్కించబడింది.',
+        'सूर्योदय और सूर्यास्त के ठीक बीच का समय मध्याह्न है। मध्याह्न से दिन की लंबाई के तीसवें भाग पहले से तीसवें भाग बाद तक (दोनों ओर लगभग 24 मिनट) अभिजित् है। यहाँ दिखाया गया समय आपके सूर्योदय-सूर्यास्त से इसी प्रकार गणना किया गया है।',
+        'सूर्योदयास्तयोः मध्यकालः मध्याह्नः। मध्याह्नात् दिवसदैर्घ्यस्य त्रिंशांशं पूर्वं तावदेव पश्चात् च (उभयतः प्रायः 24 निमेषाः) अभिजित्। अत्र दर्शितः समयः भवतः सूर्योदयास्ताभ्याम् एवं गणितः।'],
+   avoid:['Many traditions do not use Abhijit on Wednesdays.',
+          'చాలా సంప్రదాయాలు బుధవారం అభిజిత్‌ను వాడవు.',
+          'कई परंपराएँ बुधवार को अभिजित् का उपयोग नहीं करतीं।',
+          'बहवः सम्प्रदायाः बुधवासरे अभिजितं न उपयुञ्जते।'],
+   favor:['Considered one of the most favorable times of the day to begin important work, especially when no other good muhurtam is available that day.',
+          'ముఖ్యమైన పనులు ప్రారంభించడానికి రోజులోని అత్యంత అనుకూల సమయాలలో ఒకటిగా భావిస్తారు, ముఖ్యంగా ఆ రోజు వేరే మంచి ముహూర్తం దొరకనప్పుడు.',
+          'महत्वपूर्ण कार्य आरम्भ करने के लिए दिन के सबसे अनुकूल समयों में से एक माना जाता है, विशेषकर जब उस दिन कोई अन्य अच्छा मुहूर्त उपलब्ध न हो।',
+          'महत्त्वपूर्णकार्यारम्भाय दिवसस्य अनुकूलतमेषु कालेषु अन्यतमः इति मन्यते, विशेषतः यदा तद्दिने अन्यः शुभमुहूर्तः न लभ्यते।'],
+   varies:['Some use it as a general good time; others use it only as a fallback, and many do not rely on it alone for marriage or griha pravesham. If it overlaps another period, such as Durmuhurtam, families usually settle which takes precedence with their purohit.',
+           'కొందరు దీన్ని సాధారణ శుభ సమయంగా వాడతారు; మరికొందరు వేరే మార్గం లేనప్పుడు మాత్రమే. వివాహం, గృహప్రవేశాలకు చాలామంది దీనిపై మాత్రమే ఆధారపడరు. ఇది దుర్ముహూర్తం వంటి మరో కాలంతో కలిసి వస్తే ఏది ముఖ్యమో కుటుంబాలు సాధారణంగా పురోహితునితో నిర్ణయిస్తాయి.',
+           'कुछ लोग इसे सामान्य शुभ समय मानते हैं; अन्य केवल विकल्प के रूप में, और कई लोग विवाह या गृहप्रवेश के लिए केवल इसी पर निर्भर नहीं रहते। यदि यह दुर्मुहूर्त जैसे किसी अन्य काल से मेल खाए, तो किसे प्राथमिकता दें यह परिवार प्रायः अपने पुरोहित के साथ तय करते हैं।',
+           'केचन एनं सामान्यशुभकालत्वेन उपयुञ्जते; अन्ये केवलं विकल्पत्वेन, बहवः विवाहगृहप्रवेशयोः केवलम् एतस्मिन् न निर्भराः। यदि अयं दुर्मुहूर्तादिना अन्येन कालेन सह सङ्गच्छते, तर्हि कस्य प्राधान्यम् इति कुटुम्बानि प्रायः पुरोहितेन सह निश्चिन्वन्ति।'] },
+
+ { key:'amrita', group:'favor',
+   name:['Amrita Kalam','అమృత ఘడియలు','अमृत काल','अमृतकालः'],
+   gist:['A favorable window of about 1½ hours inside each nakshatram; the counterpart of Varjyam.',
+         'ప్రతి నక్షత్రంలో సుమారు 1½ గంటల అనుకూల సమయం; వర్జ్యానికి వ్యతిరేకమైనది.',
+         'हर नक्षत्र के भीतर लगभग 1½ घंटे का अनुकूल समय; वर्ज्य का विपरीत।',
+         'प्रतिनक्षत्रं प्रायः सार्धघण्टात्मकः अनुकूलकालः; वर्ज्यस्य प्रतिरूपः।'],
+   what:['Amrita means nectar. Amrita Kalam (Amrita ghadiyalu in Telugu) is a favorable window of 4 ghatis, about 1½ hours, inside each nakshatram: the auspicious counterpart of Varjyam.',
+         'అమృతం అంటే సుధ. అమృత ఘడియలు (అమృతకాలం) ప్రతి నక్షత్రంలో 4 ఘడియల, సుమారు 1½ గంటల అనుకూల సమయం: వర్జ్యానికి శుభప్రదమైన ప్రతిరూపం.',
+         'अमृत का अर्थ है सुधा। अमृत काल (तेलुगु में अमृत घडियलु) हर नक्षत्र के भीतर 4 घटी, लगभग 1½ घंटे, का अनुकूल समय है: वर्ज्य का शुभ प्रतिरूप।',
+         'अमृतं नाम सुधा। अमृतकालः (तेलुगुभाषायाम् अमृतघटिकाः) प्रतिनक्षत्रं चतुर्घटिकात्मकः, प्रायः सार्धघण्टात्मकः, अनुकूलकालः: वर्ज्यस्य शुभप्रतिरूपः।'],
+   how:['Worked out the same way as Varjyam: a fixed ghati window for each nakshatram, scaled to the nakshatram\'s actual length. This app does not show Amrita Kalam yet, because its ghati table has not been checked against published panchangams.',
+        'వర్జ్యం లాగానే లెక్కిస్తారు: ప్రతి నక్షత్రానికి ఒక నిర్ణీత ఘడియల సమయం, నక్షత్రం అసలు నిడివికి అనుగుణంగా మార్చి. దీని ఘడియల పట్టికను ముద్రిత పంచాంగాలతో ఇంకా సరిచూడనందున ఈ యాప్ ప్రస్తుతం అమృత ఘడియలను చూపదు.',
+        'वर्ज्य की तरह ही गणना होती है: हर नक्षत्र के लिए एक निश्चित घटी-समय, जिसे नक्षत्र की वास्तविक अवधि के अनुसार ढाला जाता है। इसकी घटी-तालिका को अभी छपे पंचांगों से मिलाया नहीं गया है, इसलिए यह ऐप अभी अमृत काल नहीं दिखाता।',
+        'वर्ज्यवत् एव गण्यते: प्रतिनक्षत्रं निश्चितः घटिकाकालः, नक्षत्रस्य वास्तविकदैर्घ्यानुसारं परिवर्तितः। अस्य घटिकासारणी मुद्रितपञ्चाङ्गैः सह न परीक्षिता इति कारणात् अयम् अनुप्रयोगः इदानीम् अमृतकालं न दर्शयति।'],
+   avoid:['Nothing in particular.',
+          'ప్రత్యేకంగా ఏమీ లేదు.',
+          'कुछ विशेष नहीं।',
+          'विशेषं किमपि न।'],
+   favor:['Considered good for beginning auspicious work, prayer and important tasks. Many people look for it when no other good time is available on a given day.',
+          'శుభకార్యాలు, పూజ, ముఖ్యమైన పనులు ప్రారంభించడానికి మంచిదిగా భావిస్తారు. ఒక రోజు వేరే మంచి సమయం లేనప్పుడు చాలామంది అమృత ఘడియల కోసం చూస్తారు.',
+          'शुभ कार्य, पूजा और महत्वपूर्ण कार्य आरम्भ करने के लिए अच्छा माना जाता है। किसी दिन अन्य अच्छा समय न हो तो कई लोग इसे देखते हैं।',
+          'शुभकार्य-पूजा-महत्त्वपूर्णकार्यारम्भाय शुभः इति मन्यते। कस्मिंश्चित् दिने अन्यः शुभकालः न चेत् बहवः एनम् अन्विष्यन्ति।'],
+   varies:['Some astrologers hold that Amrita Kalam softens other unfavorable factors on that day; others give it less weight. Like Varjyam, it appears mainly in South Indian, especially Telugu, panchangams.',
+           'అమృత ఘడియలు ఆ రోజు ఇతర అననుకూల అంశాల ప్రభావాన్ని తగ్గిస్తాయని కొందరు జ్యోతిష్కులు భావిస్తారు; మరికొందరు తక్కువ ప్రాధాన్యం ఇస్తారు. వర్జ్యం లాగానే ఇది ఎక్కువగా దక్షిణ భారత, ముఖ్యంగా తెలుగు పంచాంగాలలో కనిపిస్తుంది.',
+           'कुछ ज्योतिषी मानते हैं कि अमृत काल उस दिन के अन्य प्रतिकूल कारकों को कम करता है; अन्य इसे कम महत्व देते हैं। वर्ज्य की तरह यह मुख्यतः दक्षिण भारतीय, विशेषकर तेलुगु, पंचांगों में मिलता है।',
+           'केचन ज्योतिषिणः मन्यन्ते यत् अमृतकालः तद्दिनस्य अन्यप्रतिकूलांशान् शमयति; अन्ये अल्पं महत्त्वं ददति। वर्ज्यवत् अयं मुख्यतः दक्षिणभारतीयेषु, विशेषतः तेलुगुपञ्चाङ्गेषु दृश्यते।'] },
+
+ { key:'brahma', group:'favor',
+   name:['Brahma Muhurtam','బ్రాహ్మీ ముహూర్తం','ब्रह्म मुहूर्त','ब्राह्ममुहूर्तः'],
+   gist:['The quiet period before dawn, valued for prayer, meditation and study.',
+         'తెల్లవారుజామున ప్రశాంత సమయం; పూజ, ధ్యానం, అధ్యయనానికి విలువైనదిగా భావిస్తారు.',
+         'भोर से पहले का शांत समय; पूजा, ध्यान और अध्ययन के लिए मूल्यवान माना जाता है।',
+         'उषसः पूर्वं शान्तः कालः; पूजाध्यानाध्ययनेभ्यः श्रेष्ठः इति मन्यते।'],
+   what:['The period before dawn, the second-to-last muhurtam of the night: roughly from 1½ hours to ¾ hour before sunrise.',
+         'తెల్లవారకముందు, రాత్రిలోని చివరి ముహూర్తానికి ముందు ముహూర్తం: సుమారు సూర్యోదయానికి 1½ గంటల ముందు నుండి ¾ గంట ముందు వరకు.',
+         'भोर से पहले का समय, रात्रि का अंतिम से पहला मुहूर्त: लगभग सूर्योदय से 1½ घंटे पहले से ¾ घंटे पहले तक।',
+         'उषसः पूर्वकालः, रात्रेः उपान्त्यमुहूर्तः: प्रायः सूर्योदयात् सार्धघण्टापूर्वात् पादोनघण्टापूर्वपर्यन्तम्।'],
+   how:['Commonly taken as the 48 minutes starting 96 minutes before sunrise (4:24–5:12 AM for a 6:00 AM sunrise). Some panchangams instead divide the actual night into 15 parts and take the 14th, so the window shifts with the season. This app does not show its time.',
+        'సాధారణంగా సూర్యోదయానికి 96 నిమిషాల ముందు మొదలయ్యే 48 నిమిషాలుగా తీసుకుంటారు (ఉ. 6:00 సూర్యోదయానికి ఉ. 4:24–5:12). కొన్ని పంచాంగాలు అసలు రాత్రిని 15 భాగాలు చేసి 14వ భాగాన్ని తీసుకుంటాయి, కాబట్టి ఋతువును బట్టి సమయం మారుతుంది. ఈ యాప్ దీని సమయాన్ని చూపదు.',
+        'सामान्यतः सूर्योदय से 96 मिनट पहले शुरू होने वाले 48 मिनट माने जाते हैं (सुबह 6:00 के सूर्योदय पर 4:24–5:12)। कुछ पंचांग वास्तविक रात्रि को 15 भागों में बाँटकर 14वाँ भाग लेते हैं, जिससे समय ऋतु के साथ बदलता है। यह ऐप इसका समय नहीं दिखाता।',
+        'सामान्यतः सूर्योदयात् षण्णवतिनिमेषपूर्वम् आरभ्य अष्टचत्वारिंशन्निमेषाः गृह्यन्ते (प्रातः 6:00 सूर्योदये 4:24–5:12)। कानिचित् पञ्चाङ्गानि वास्तविकरात्रिं पञ्चदशधा विभज्य चतुर्दशं भागं गृह्णन्ति, अतः ऋत्वनुसारं कालः परिवर्तते। अयम् अनुप्रयोगः अस्य समयं न दर्शयति।'],
+   avoid:['Nothing in particular is avoided.',
+          'ప్రత్యేకంగా ఏమీ వద్దనలేదు.',
+          'किसी विशेष कार्य से बचने को नहीं कहा गया है।',
+          'विशेषं किमपि न वर्ज्यते।'],
+   favor:['Traditional guidance on daily routine, including Ayurveda, recommends waking at this time. It is valued for prayer, meditation, study and yoga.',
+          'ఆయుర్వేదంతో సహా దినచర్యకు సంబంధించిన సంప్రదాయ మార్గదర్శకాలు ఈ సమయంలో నిద్ర లేవాలని సూచిస్తాయి. పూజ, ధ్యానం, అధ్యయనం, యోగాకు ఈ సమయం విలువైనదిగా భావిస్తారు.',
+          'आयुर्वेद सहित दिनचर्या संबंधी पारंपरिक मार्गदर्शन इस समय उठने की सलाह देता है। इसे पूजा, ध्यान, अध्ययन और योग के लिए मूल्यवान माना जाता है।',
+          'आयुर्वेदसहितं दिनचर्याविषयकं पारम्परिकमार्गदर्शनम् अस्मिन् काले उत्थानं सूचयति। पूजाध्यानाध्ययनयोगेभ्यः अयं कालः श्रेष्ठः इति मन्यते।'],
+   varies:['It is a recommendation for personal practice rather than a rule; people follow it as far as their health, work and family life allow.',
+           'ఇది నియమం కంటే వ్యక్తిగత ఆచరణకు సంబంధించిన సూచన; ఆరోగ్యం, ఉద్యోగం, కుటుంబ పరిస్థితులు అనుమతించినంత వరకు పాటిస్తారు.',
+           'यह नियम से अधिक व्यक्तिगत अभ्यास का सुझाव है; लोग अपने स्वास्थ्य, काम और पारिवारिक जीवन के अनुसार जितना हो सके पालन करते हैं।',
+           'एषः नियमः न, व्यक्तिगताचाराय सूचना; जनाः स्वास्थ्य-वृत्ति-कुटुम्बानुकूल्यानुसारं यथाशक्ति पालयन्ति।'] }
+];
+
+var KALAM_INTRO=[
+ 'These are traditional divisions of the day from Muhurta Shastra, the part of Jyotisha that deals with choosing times. Tradition uses them to pick a good moment to begin important work; they are not predictions that something will go wrong. Each card explains what the period is, how it is calculated, what tradition advises, and how practice differs. Times are for the date and place selected on the Panchangamu tab.',
+ 'ఇవి ముహూర్త శాస్త్రం (సమయ నిర్ణయానికి సంబంధించిన జ్యోతిష శాఖ) ప్రకారం రోజులోని సంప్రదాయ కాల విభాగాలు. ముఖ్యమైన పనులు ప్రారంభించడానికి మంచి సమయం ఎంచుకోవడానికి సంప్రదాయం వీటిని వాడుతుంది; ఏదో చెడు జరుగుతుందని చెప్పే జోస్యాలు కావు. ప్రతి కార్డు ఆ కాలం ఏమిటి, ఎలా లెక్కిస్తారు, సంప్రదాయం ఏమి సూచిస్తుంది, ఆచరణలో తేడాలు ఏమిటి అని వివరిస్తుంది. సమయాలు పంచాంగము ట్యాబ్‌లో ఎంచుకున్న తేదీ, స్థలానికి సంబంధించినవి.',
+ 'ये मुहूर्त शास्त्र (ज्योतिष की वह शाखा जो समय-चयन से संबंधित है) के अनुसार दिन के पारंपरिक काल-विभाग हैं। परंपरा इनका उपयोग महत्वपूर्ण कार्य आरम्भ करने का अच्छा समय चुनने के लिए करती है; ये कुछ बुरा होने की भविष्यवाणी नहीं हैं। प्रत्येक कार्ड बताता है कि वह काल क्या है, उसकी गणना कैसे होती है, परंपरा क्या सलाह देती है, और व्यवहार में क्या अंतर हैं। समय पंचांगम् टैब में चुनी गई तिथि और स्थान के लिए हैं।',
+ 'एते मुहूर्तशास्त्रानुसारं (कालनिर्णयविषयकस्य ज्यौतिषभागस्य) दिवसस्य पारम्परिककालविभागाः। महत्त्वपूर्णकार्यारम्भाय शुभक्षणं चेतुं परम्परा एतान् उपयुङ्क्ते; न एते अनिष्टस्य भविष्यवाण्यः। प्रत्येकं पत्रं वदति — कः कालः, कथं गण्यते, परम्परा किं सूचयति, आचारे के भेदाः इति। समयाः पञ्चाङ्गम्-विभागे चितायाः तिथेः स्थानस्य च।'
+];
+
+var KALAM_MYTHS=[
+ ['An unfavorable period is about starting, not about existing. Tradition advises against beginning new auspicious work in it; work already under way, daily duties and a journey already begun continue as normal.',
+  'అననుకూల కాలం అంటే ప్రారంభానికి సంబంధించినది, ఆ సమయంలో ఉండటానికి కాదు. ఆ సమయంలో కొత్త శుభకార్యాలు మొదలుపెట్టవద్దని సంప్రదాయం; ఇప్పటికే జరుగుతున్న పనులు, రోజువారీ విధులు, ఇప్పటికే మొదలైన ప్రయాణం యథావిధిగా కొనసాగుతాయి.',
+  'प्रतिकूल काल आरम्भ से संबंधित है, उस समय में होने से नहीं। परंपरा उसमें नए शुभ कार्य आरम्भ न करने को कहती है; पहले से चल रहे कार्य, दैनिक कर्तव्य और पहले से शुरू हुई यात्रा सामान्य रूप से चलते रहते हैं।',
+  'प्रतिकूलकालः आरम्भविषयकः, न तु तस्मिन् काले स्थितिविषयकः। तस्मिन् नूतनशुभकार्यारम्भः परम्परया वर्ज्यते; आरब्धकार्याणि नित्यकर्तव्यानि आरब्धयात्रा च यथावत् प्रचलन्ति।'],
+ ['Most people do not delay medical care, emergencies or fixed-time commitments such as exams and flights for these periods. The guidance is about choosing when to begin something when you have the choice.',
+  'చాలామంది వైద్యం, అత్యవసర పరిస్థితులు, పరీక్షలు, విమాన ప్రయాణాలు వంటి నిర్ణీత సమయ కార్యక్రమాలను ఈ కాలాల కోసం వాయిదా వేయరు. మీకు ఎంచుకునే అవకాశం ఉన్నప్పుడు ఎప్పుడు ప్రారంభించాలో నిర్ణయించడానికే ఈ సూచనలు.',
+  'अधिकतर लोग इन कालों के कारण चिकित्सा, आपात स्थिति या परीक्षा और उड़ान जैसे निश्चित समय के कार्य नहीं टालते। यह मार्गदर्शन इस बारे में है कि जब आपके पास विकल्प हो तब कोई कार्य कब आरम्भ करें।',
+  'बहवः जनाः एतेषां कालानां कारणात् चिकित्सां, आपत्कार्याणि, परीक्षाविमानयात्रादीनि निश्चितसमयकार्याणि वा न विलम्बयन्ति। यदा विकल्पः अस्ति तदा कदा आरभेत इति निर्णयाय एव एषा सूचना।'],
+ ['For major events, families combine these periods with tithi, nakshatram, the weekday and the individual\'s chart, usually with a purohit\'s help. No single period decides a muhurtam on its own.',
+  'పెద్ద కార్యాలకు కుటుంబాలు ఈ కాలాలను తిథి, నక్షత్రం, వారం, వ్యక్తి జాతకంతో కలిపి, సాధారణంగా పురోహితుని సహాయంతో చూస్తాయి. ఏ ఒక్క కాలమూ ఒంటరిగా ముహూర్తాన్ని నిర్ణయించదు.',
+  'बड़े आयोजनों के लिए परिवार इन कालों को तिथि, नक्षत्र, वार और व्यक्ति की कुंडली के साथ मिलाकर, प्रायः पुरोहित की सहायता से देखते हैं। कोई एक काल अकेले मुहूर्त तय नहीं करता।',
+  'महाकार्येभ्यः कुटुम्बानि एतान् कालान् तिथिनक्षत्रवासरैः व्यक्तेः जातकेन च सह, प्रायः पुरोहितसाहाय्येन, विचारयन्ति। न कोऽपि एकः कालः स्वयं मुहूर्तं निश्चिनोति।'],
+ ['The times depend on your local sunrise and sunset. A table printed for another city, or one that assumes a 6 AM–6 PM day, can be off by many minutes.',
+  'సమయాలు మీ స్థానిక సూర్యోదయ, సూర్యాస్తమయాలపై ఆధారపడతాయి. వేరే నగరానికి ముద్రించిన పట్టిక, లేదా ఉ. 6 – సా. 6 పగటిని ఊహించే పట్టిక చాలా నిమిషాలు తేడా రావచ్చు.',
+  'समय आपके स्थानीय सूर्योदय और सूर्यास्त पर निर्भर करते हैं। किसी अन्य शहर के लिए छपी तालिका, या सुबह 6 – शाम 6 का दिन मानने वाली तालिका, कई मिनट अलग हो सकती है।',
+  'समयाः भवतः स्थानीयसूर्योदयास्तयोः आश्रिताः। अन्यनगराय मुद्रिता सारणी, प्रातः षड्वादनात् सायं षड्वादनपर्यन्तं दिवसं कल्पयन्ती सारणी वा बहुभिः निमेषैः भिद्येत।']
+];
+
+function kalamEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function kalamTimeFor(key, r){
+  var L=state.lang, li=L==='te'?1:L==='hi'?2:L==='sa'?3:0;
+  if(key==='amrita' || key==='brahma') return { text:KALAM_LABELS.notTimed[li], muted:true };
+  if(r.polar) return { text:KALAM_LABELS.polar[li], muted:true };
+  if(key==='rahu') return { text:fmtTime(r.rahu.start)+' – '+fmtTime(r.rahu.end) };
+  if(key==='yama') return { text:fmtTime(r.yama.start)+' – '+fmtTime(r.yama.end) };
+  if(key==='gulika') return { text:fmtTime(r.gulika.start)+' – '+fmtTime(r.gulika.end) };
+  if(key==='durm'){
+    if(!r.durmuhurtams.length) return { text:KALAM_LABELS.none[li], muted:true };
+    return { text:r.durmuhurtams.map(function(p){ return p.start+' – '+p.end; }).join(', ') };
+  }
+  if(key==='varj'){
+    if(!r.varjyam) return { text:KALAM_LABELS.none[li], muted:true };
+    return { text:r.varjyam.start+' – '+r.varjyam.end };
+  }
+  if(key==='abhijit'){
+    var mid=(r.sunriseMin+r.sunsetMin)/2, half=(r.sunsetMin-r.sunriseMin)/30;
+    var out={ text:fmtTime(mid-half)+' – '+fmtTime(mid+half) };
+    if(r.wd===3) out.note=KALAM_LABELS.abhijitWed[li];
+    return out;
+  }
+  return { text:'—', muted:true };
+}
+
+function renderKalamsTab(){
+  var L=state.lang, li=L==='te'?1:L==='hi'?2:L==='sa'?3:0;
+  var r=computeAll(state.date, state.lat, state.lon, state.tz);
+  var dateTxt=state.date.toLocaleDateString(undefined,{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+  document.getElementById('kalamsWhen').textContent = dateTxt+' · '+state.locLabel;
+  document.getElementById('kalamsIntro').textContent = KALAM_INTRO[li];
+  var myths=document.getElementById('kalamsMyths');
+  myths.innerHTML='';
+  KALAM_MYTHS.forEach(function(m){
+    var d=document.createElement('li');
+    d.textContent=m[li];
+    myths.appendChild(d);
+  });
+  ['avoid','favor'].forEach(function(group){
+    var wrap=document.getElementById(group==='avoid'?'kalamsAvoidWrap':'kalamsFavorWrap');
+    wrap.innerHTML='';
+    KALAM_INFO.filter(function(k){ return k.group===group; }).forEach(function(k){
+      var t=kalamTimeFor(k.key, r);
+      var det=document.createElement('details');
+      det.className='kalam '+group;
+      var nameCls = L==='en' ? '' : ' te';
+      var html='<summary><div class="khead"><div class="kname'+nameCls+'">'+kalamEsc(k.name[li])+'</div>'+
+        '<div class="ktime'+(t.muted?' muted':'')+'">'+kalamEsc(t.text)+'</div></div>'+
+        (t.note?'<div class="knote">'+kalamEsc(t.note)+'</div>':'')+
+        '<div class="kgist">'+kalamEsc(k.gist[li])+'</div></summary><div class="kbody">';
+      ['what','how','avoid','favor','varies'].forEach(function(f){
+        html+='<div class="klabel">'+kalamEsc(KALAM_LABELS[f][li])+'</div><div class="ktext">'+kalamEsc(k[f][li])+'</div>';
+      });
+      html+='</div>';
+      det.innerHTML=html;
+      wrap.appendChild(det);
+    });
+  });
+}
+
 /* ---- Tabs ---- */
 function showTab(which){
   document.getElementById('tabBtnPanch').classList.toggle('active', which==='panch');
@@ -2100,6 +2464,7 @@ function showTab(which){
   document.getElementById('tabBtnMatch').classList.toggle('active', which==='match');
   document.getElementById('tabBtnMuhurtham').classList.toggle('active', which==='muhurtham');
   document.getElementById('tabBtnSravanam').classList.toggle('active', which==='sravanam');
+  document.getElementById('tabBtnKalams').classList.toggle('active', which==='kalams');
   document.getElementById('tabPanchangamu').style.display = which==='panch' ? '' : 'none';
   document.getElementById('tabJathakamu').style.display = which==='jathakam' ? '' : 'none';
   document.getElementById('tabEventLookup').style.display = which==='event' ? '' : 'none';
@@ -2108,9 +2473,11 @@ function showTab(which){
   document.getElementById('tabMatch').style.display = which==='match' ? '' : 'none';
   document.getElementById('tabMuhurtham').style.display = which==='muhurtham' ? '' : 'none';
   document.getElementById('tabSravanam').style.display = which==='sravanam' ? '' : 'none';
+  document.getElementById('tabKalams').style.display = which==='kalams' ? '' : 'none';
   if(which==='festivals'){ renderFestivalsTab(); }
   if(which==='calendar'){ renderCalendarTab(); }
   if(which==='sravanam'){ loadSravanamTab(); }
+  if(which==='kalams'){ renderKalamsTab(); }
 }
 document.getElementById('tabBtnPanch').onclick=function(){ showTab('panch'); };
 document.getElementById('tabBtnJathakam').onclick=function(){ showTab('jathakam'); };
@@ -2120,6 +2487,7 @@ document.getElementById('tabBtnFestivals').onclick=function(){ showTab('festival
 document.getElementById('tabBtnMatch').onclick=function(){ showTab('match'); };
 document.getElementById('tabBtnMuhurtham').onclick=function(){ showTab('muhurtham'); };
 document.getElementById('tabBtnSravanam').onclick=function(){ showTab('sravanam'); };
+document.getElementById('tabBtnKalams').onclick=function(){ showTab('kalams'); };
 
 function nearestCity(lat,lon){
   var best=null, bd=1e9;
